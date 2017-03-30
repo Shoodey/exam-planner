@@ -8,6 +8,7 @@
         "php": ">=5.6.4",
         "acacha/admin-lte-template-laravel": "4.*",
         "barryvdh/laravel-debugbar": "^2.3",
+        "fideloper/proxy": "^3.3",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0"
     },
