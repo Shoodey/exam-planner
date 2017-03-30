@@ -5,6 +5,7 @@
  *   License: Open source - MIT
  *           Please visit http://opensource.org/licenses/MIT for more information
 !*/
+
 /*
  * Core: General Layout Style
  * -------------------------
@@ -253,7 +254,7 @@ a:focus {
   font-family: fontAwesome;
 }
 .main-header .sidebar-toggle:before {
-  content: "\F0C9";
+  content: "\f0c9";
 }
 .main-header .sidebar-toggle:hover {
   color: #fff;
@@ -308,8 +309,12 @@ a:focus {
   padding: 15px 15px 0 15px;
 }
 .content-header > h1 {
+  color: black;
   margin: 0;
   font-size: 24px;
+  font-family: Source Sans Pro, sans-serif;
+  font-weight: normal;
+  line-height: 1.1;
 }
 .content-header > h1 > small {
   font-size: 15px;
@@ -340,7 +345,7 @@ a:focus {
   margin-right: 5px;
 }
 .content-header > .breadcrumb > li + li:before {
-  content: '>\A0';
+  content: '>\00a0';
 }
 @media (max-width: 991px) {
   .content-header > .breadcrumb {
@@ -1144,6 +1149,12 @@ a:focus {
   .navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-default:hover {
     background-color: #f9f9f9;
   }
+}
+.navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-danger {
+  color: #f9f9f9;
+}
+.navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-danger:hover {
+  background-color: #D73925;
 }
 .navbar-nav > .user-menu .user-image {
   float: left;

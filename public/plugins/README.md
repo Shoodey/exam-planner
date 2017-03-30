@@ -1,29 +1,29 @@
-"Moono" Skin
-====================
+CKEditor WebSpellChecker Plugin
+===============================
 
-This skin has been chosen for the **default skin** of CKEditor 4.x, elected from the CKEditor
-[skin contest](http://ckeditor.com/blog/new_ckeditor_4_skin) and further shaped by
-the CKEditor team. "Moono" is maintained by the core developers.
+This plugin brings Web Spell Checker (WSC) into CKEditor.
 
-For more information about skins, please check the [CKEditor Skin SDK](http://docs.cksource.com/CKEditor_4.x/Skin_SDK)
-documentation.
+WSC is "installation-less", using the web-services of [WebSpellChecker.net](http://www.webspellchecker.net/). It's an out of the box solution.
 
-Features
--------------------
-"Moono" is a monochromatic skin, which offers a modern look coupled with gradients and transparency.
-It comes with the following features:
+Installation
+------------
 
-- Chameleon feature with brightness,
-- high-contrast compatibility,
-- graphics source provided in SVG.
+1. Clone/copy this repository contents in a new "plugins/wsc" folder in your CKEditor installation.
+2. Enable the "wsc" plugin in the CKEditor configuration file (config.js):
 
-Directory Structure
--------------------
+        config.extraPlugins = 'wsc';
 
-CSS parts:
-- **editor.css**: the main CSS file. It's simply loading several other files, for easier maintenance,
-- **mainui.css**: the file contains styles of entire editor outline structures,
-- **toolbar.css**: the file contains styles of the editor toolbar space (top),
+That's all. WSC will appear on the editor toolbar and will be ready to use.
+
+License
+-------
+
+Licensed under the terms of any of the following licenses at your choice: [GPL](http://www.gnu.org/licenses/gpl.html), [LGPL](http://www.gnu.org/licenses/lgpl.html) and [MPL](http://www.mozilla.org/MPL/MPL-1.1.html).
+
+See LICENSE.md for more information.
+
+Developed in cooperation with [WebSpellChecker.net](http://www.webspellchecker.net/).
+le contains styles of the editor toolbar space (top),
 - **richcombo.css**: the file contains styles of the rich combo ui elements on toolbar,
 - **panel.css**: the file contains styles of the rich combo drop-down, it's not loaded
 until the first panel open up,
