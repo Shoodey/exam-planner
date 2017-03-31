@@ -309,12 +309,8 @@ a:focus {
   padding: 15px 15px 0 15px;
 }
 .content-header > h1 {
-  color: black;
   margin: 0;
   font-size: 24px;
-  font-family: Source Sans Pro, sans-serif;
-  font-weight: normal;
-  line-height: 1.1;
 }
 .content-header > h1 > small {
   font-size: 15px;
@@ -1149,12 +1145,6 @@ a:focus {
   .navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-default:hover {
     background-color: #f9f9f9;
   }
-}
-.navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-danger {
-  color: #f9f9f9;
-}
-.navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-danger:hover {
-  background-color: #D73925;
 }
 .navbar-nav > .user-menu .user-image {
   float: left;

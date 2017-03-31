@@ -19,7 +19,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .less('node_modules/toastr/toastr.less','public/css/toastr.css')
    .combine([
        'public/css/app.css',
-       'resources/assets/admin-lte/dist/css/skins/_all-skins.css',
+       'node_modules/admin-lte/dist/css/skins/_all-skins.css',
        'public/css/adminlte-app.css',
        'node_modules/icheck/skins/square/green.css',
        'public/css/toastr.css'
@@ -33,9 +33,9 @@ mix.js('resources/assets/js/app.js', 'public/js')
    //VENDOR RESOURCES
    .copy('node_modules/font-awesome/fonts/*.*','public/fonts/')
    .copy('node_modules/ionicons/dist/fonts/*.*','public/fonts/')
-   .copy('resources/assets/admin-lte/bootstrap/fonts/*.*','public/fonts/bootstrap')
-   .copy('resources/assets/admin-lte/dist/css/skins/*.*','public/css/skins')
-   .copy('resources/assets/admin-lte/dist/img','public/img')
-   .copy('resources/assets/admin-lte/plugins','public/plugins')
+   .copy('node_modules/admin-lte/bootstrap/fonts/*.*','public/fonts/bootstrap')
+   .copy('node_modules/admin-lte/dist/css/skins/*.*','public/css/skins')
+   .copy('node_modules/admin-lte/dist/img','public/img')
+   .copy('node_modules/admin-lte/plugins','public/plugins')
    .copy('node_modules/icheck/skins/square/green.png','public/css')
    .copy('node_modules/icheck/skins/square/green@2x.png','public/css');

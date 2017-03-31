@@ -25,6 +25,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('adminlte::home', compact('user'));
+        $menu = "dashboard";
+        return view('dashboard', compact('user', 'menu'));
     }
 }

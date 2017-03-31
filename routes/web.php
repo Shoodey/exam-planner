@@ -12,16 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
+    Route::group(['prefix' => 'admin'], function() {
+        Route::resource('/users', 'UsersController');
+    });
+
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
 });
-
-Auth::routes();
 
 
