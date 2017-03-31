@@ -11289,14 +11289,14 @@ var app = new Vue({
     el: '#app',
 
     data: {
-        user: null
+        users: null
     },
 
     created: function created() {
         var _this = this;
 
         axios.get('/api/users').then(function (response) {
-            _this.user = response.data;
+            _this.users = response.data;
         });
     }
 });
@@ -12205,9 +12205,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['user']
+    props: ['users']
 });
 
 /***/ }),
@@ -32847,9 +32849,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel panel-primary"
   }, [_c('div', {
     staticClass: "panel-heading"
-  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Users")]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
-  }, [_vm._v("\n                " + _vm._s(_vm.user) + "\n            ")])])])])
+  }, _vm._l((_vm.users), function(user) {
+    return _c('p', [_vm._v("\n                    " + _vm._s(user.name) + "\n                ")])
+  }))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

@@ -17,6 +17,10 @@ class RolesTableSeeder extends Seeder
                 'slug'  => "admin"
             ],
             [
+                'name'  => "User",
+                'slug'  => "user"
+            ],
+            [
                 'name'  => "Faculty Member",
                 'slug'  => "faculty_member"
             ],

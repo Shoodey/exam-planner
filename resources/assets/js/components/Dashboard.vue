@@ -2,10 +2,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Example Component</div>
+                    <div class="panel-heading">Users</div>
 
                     <div class="panel-body">
-                        {{ user }}
+                        <p v-for="user in users">
+                            {{ user.name }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -14,6 +16,6 @@
 
 <script>
     export default {
-        props: ['user'],
+        props: ['users'],
     }
 </script>

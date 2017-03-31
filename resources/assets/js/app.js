@@ -18,12 +18,12 @@ const app = new Vue({
     el: '#app',
 
     data: {
-        user: null
+        users: null
     },
 
     created() {
         axios.get('/api/users').then(response => {
-            this.user = response.data;
+            this.users = response.data;
         });
     }
 });
