@@ -10,7 +10,8 @@
         "barryvdh/laravel-debugbar": "^2.3",
         "fideloper/proxy": "^3.3",
         "laravel/framework": "5.4.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "ext-pdo_sqlite": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
