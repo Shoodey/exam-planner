@@ -13,6 +13,21 @@ require('./bootstrap');
  */
 
 Vue.component('dashboard', require('./components/Dashboard.vue'));
+Vue.component('admin-users-list', require('./components/admin/users/UsersList.vue'));
+
+toastr.options = {
+    "closeButton": false,
+    "positionClass": "toast-bottom-right",
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "2000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
 
 const app = new Vue({
     el: '#app',
@@ -24,6 +39,17 @@ const app = new Vue({
     created() {
         axios.get('/api/users').then(response => {
             this.users = response.data;
+
+            setTimeout(function(){
+                $('#dataTable').DataTable({
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false
+                });
+            }, 200);
         });
     }
 });

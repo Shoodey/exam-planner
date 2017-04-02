@@ -18,8 +18,12 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-    Route::group(['prefix' => 'admin'], function() {
-        Route::resource('/users', 'UsersController');
+    Route::group(['prefix' => 'admin'], function () {
+        Route::resource('users', 'UsersController', [
+            'names' => [
+                'index' => 'admin.users.index'
+            ]
+        ]);
     });
 
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.

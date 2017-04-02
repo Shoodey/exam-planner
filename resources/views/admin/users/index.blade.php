@@ -17,8 +17,18 @@
     </section>
 
     <section class="content">
-        <div class="container-fluid spark-screen">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                    </div>
+                    <admin-users-list :users="users"></admin-users-list>
+                </div>
+            </div>
 
+            <div class="col-xs-12">
+                <a class="btn btn-primary btn-flat">Add a new user</a>
+            </div>
         </div>
     </section>
 @endsection

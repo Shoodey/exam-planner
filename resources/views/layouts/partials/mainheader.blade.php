@@ -89,7 +89,7 @@
                                 <img src="{{ Gravatar::get(Auth::user()->email) }}" class="img-circle" alt="User Image"/>
                                 <p>
                                     {{ Auth::user()->name }}
-                                    <small>{{ Auth::user()->name }}</small>
+                                    <small>{{ Auth::user()->role->name }}</small>
                                 </p>
                             </li>
 

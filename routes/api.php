@@ -14,9 +14,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
 
 Route::group(['prefix' => 'v1','middleware' => 'auth:api'], function () {
     //    Route::resource('task', 'TasksController');
@@ -27,4 +24,22 @@ Route::group(['prefix' => 'v1','middleware' => 'auth:api'], function () {
 
 Route::get('/users', function(){
     return User::all()->load('role');
+});
+
+Route::delete('/users/{id}', function($id){
+    User::find($id)->delete();
+});
+
+Route::post('/users/{id}', function(Request $request, $id){
+    $data = $request->get('user');
+
+    $user = User::findOrFail($id);
+
+    $user->name = $data['name'];
+    $user->email = $data['email'];
+    $user->role_id = $data['role_id'];
+    if(isset($data['password'])){
+        $user->password = bcrypt($data['password']);
+    }
+    $user->save();
 });
