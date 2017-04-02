@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-class UsersController extends Controller
+use Illuminate\Http\Request;
+
+class SectionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,7 +14,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        $menu = 'users';
-        return view('admin.users.index', compact('menu'));
+        $menu = 'sections';
+        return view('admin.sections.index', compact('menu'));
     }
 }

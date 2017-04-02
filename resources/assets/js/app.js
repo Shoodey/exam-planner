@@ -14,6 +14,7 @@ require('./bootstrap');
 
 Vue.component('dashboard', require('./components/Dashboard.vue'));
 Vue.component('admin-users-list', require('./components/admin/users/UsersList.vue'));
+Vue.component('admin-courses-list', require('./components/admin/users/CoursesList.vue'));
 
 toastr.options = {
     "closeButton": false,
@@ -33,14 +34,14 @@ const app = new Vue({
     el: '#app',
 
     data: {
-        users: null
+        users: null,
+        courses: null
     },
 
     created() {
         axios.get('/api/users').then(response => {
             this.users = response.data;
-
-            setTimeout(function(){
+            setTimeout(function () {
                 $('#dataTable').DataTable({
                     "paging": true,
                     "lengthChange": true,
@@ -49,7 +50,12 @@ const app = new Vue({
                     "info": true,
                     "autoWidth": false
                 });
-            }, 200);
+            }, 500);
+
+        });
+
+        axios.get('/api/courses').then(response => {
+            this.courses = response.data;
         });
     }
 });

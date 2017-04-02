@@ -18,8 +18,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => rand(10000, 79999).'.aui@.ma',
-        'role_id' => 3,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'role_id' => 4,
+        'created_by' => 1,
+        'password' => $password ?: $password = bcrypt('password'),
         'remember_token' => str_random(10),
     ];
 });

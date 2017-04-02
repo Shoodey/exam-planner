@@ -23,12 +23,24 @@
                 </a>
             </li>
 
-            @if(Auth::user()->role->slug == 'admin')
+            @if(Auth::user()->role->slug == 'admin' || Auth::user()->role->slug == 'associate')
                 <li class="header">Administration</li>
 
                 <li class="{{ $menu == 'users' ? 'active' : '' }}">
                     <a href="{{ route('admin.users.index') }}">
                         <i class='fa fa-users'></i> <span>Users</span>
+                    </a>
+                </li>
+
+                <li class="{{ $menu == 'courses' ? 'active' : '' }}">
+                    <a href="{{ route('admin.courses.index') }}">
+                        <i class='fa fa-book'></i> <span>Courses</span>
+                    </a>
+                </li>
+
+                <li class="{{ $menu == 'sections' ? 'active' : '' }}">
+                    <a href="{{ route('admin.sections.index') }}">
+                        <i class='fa fa-tags'></i> <span>Sections</span>
                     </a>
                 </li>
             @endif

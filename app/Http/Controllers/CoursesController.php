@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class UsersController extends Controller
+class CoursesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,7 +12,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        $menu = 'users';
-        return view('admin.users.index', compact('menu'));
+        $menu = 'courses';
+        return view('admin.courses.index', compact('menu'));
     }
 }

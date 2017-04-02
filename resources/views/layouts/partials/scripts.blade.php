@@ -16,12 +16,14 @@
 </script>
 
 <script>
-//    $('#dataTable').DataTable({
-//        "paging": true,
-//        "lengthChange": true,
-//        "searching": true,
-//        "ordering": true,
-//        "info": true,
-//        "autoWidth": false
-//    });
+//    setTimeout(function () {
+//        $('#dataTable').DataTable({
+//            "paging": true,
+//            "lengthChange": true,
+//            "searching": true,
+//            "ordering": true,
+//            "info": true,
+//            "autoWidth": false
+//        });
+//    }, 500);
 </script>

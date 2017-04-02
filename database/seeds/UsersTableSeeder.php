@@ -15,9 +15,10 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'name'     => "EL AMRI Ali",
-                'email'    => "shoodey@gmail.com",
+                'email'    => "72241@aui.ma",
                 'password' => bcrypt('230074'),
                 'role_id'  => 1,
+                'created_by' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -26,6 +27,7 @@ class UsersTableSeeder extends Seeder
                 'email'    => "68976@aui.ma",
                 'password' => bcrypt('uir'),
                 'role_id'  => 2,
+                'created_by' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -34,6 +36,7 @@ class UsersTableSeeder extends Seeder
                 'email'    => "59967@aui.ma",
                 'password' => bcrypt('spock'),
                 'role_id'  => 2,
+                'created_by' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -42,6 +45,7 @@ class UsersTableSeeder extends Seeder
                 'email'    => "54320@aui.ma",
                 'password' => bcrypt('robots'),
                 'role_id'  => 2,
+                'created_by' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -50,6 +54,7 @@ class UsersTableSeeder extends Seeder
                 'email'    => "56396@aui.ma",
                 'password' => bcrypt('robotics'),
                 'role_id'  => 2,
+                'created_by' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -58,11 +63,12 @@ class UsersTableSeeder extends Seeder
                 'email'    => "65134@aui.ma",
                 'password' => bcrypt('hci'),
                 'role_id'  => 2,
+                'created_by' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]
         ]);
 
-        factory(App\User::class, 10)->create();
+        factory(App\User::class, 3)->create();
     }
 }
