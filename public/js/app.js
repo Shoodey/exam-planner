@@ -32841,6 +32841,8 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "row"
   }, [_c('div', {
@@ -32851,10 +32853,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel-heading"
   }, [_vm._v("Users")]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
-  }, _vm._l((_vm.users), function(user) {
-    return _c('p', [_vm._v("\n                    " + _vm._s(user.name) + "\n                ")])
-  }))])])])
-},staticRenderFns: []}
+  })])])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

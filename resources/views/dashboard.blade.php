@@ -17,7 +17,7 @@
 
     <section class="content">
         <div class="container-fluid spark-screen">
-            <dashboard :users="users"></dashboard>
+            {{--<dashboard :users="users"></dashboard>--}}
         </div>
     </section>
 @endsection

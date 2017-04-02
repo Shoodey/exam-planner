@@ -5,9 +5,9 @@
                     <div class="panel-heading">Users</div>
 
                     <div class="panel-body">
-                        <p v-for="user in users">
-                            {{ user.name }}
-                        </p>
+                        <!--<p v-for="user in users">-->
+                            <!--{{ user.name }}-->
+                        <!--</p>-->
                     </div>
                 </div>
             </div>
