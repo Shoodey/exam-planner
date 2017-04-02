@@ -5,16 +5,20 @@
  */
 
 require('./bootstrap');
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('courses-select', require('./components/select/CoursesSelect.vue'));
+Vue.component('instructors-select', require('./components/select/InstructorsSelect.vue'));
+
+
 Vue.component('dashboard', require('./components/Dashboard.vue'));
 Vue.component('admin-users-list', require('./components/admin/users/UsersList.vue'));
 Vue.component('admin-courses-list', require('./components/admin/users/CoursesList.vue'));
+Vue.component('admin-sections-list', require('./components/admin/users/SectionsList.vue'));
 
 toastr.options = {
     "closeButton": false,
@@ -30,15 +34,19 @@ toastr.options = {
     "hideMethod": "fadeOut"
 }
 
+
 const app = new Vue({
     el: '#app',
 
     data: {
-        users: null,
-        courses: null
+        users: [],
+        courses: [],
+        sections: [],
+        instructors: []
     },
 
     created() {
+
         axios.get('/api/users').then(response => {
             this.users = response.data;
             setTimeout(function () {
@@ -56,6 +64,14 @@ const app = new Vue({
 
         axios.get('/api/courses').then(response => {
             this.courses = response.data;
+        });
+
+        axios.get('/api/sections').then(response => {
+            this.sections = response.data;
+        });
+
+        axios.get('/api/instructors').then(response => {
+            this.instructors = response.data;
         });
     }
 });

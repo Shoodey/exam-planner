@@ -18,6 +18,14 @@ class User extends Authenticatable
         'name', 'role_id', 'email', 'password', 'created_by'
     ];
 
+    protected $appends = ['aid'];
+
+    public function getAidAttribute()
+    {
+        $value = str_replace("@aui.ma", "", $this->email);
+        return $value;
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -27,11 +35,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function role(){
+    public function role()
+    {
         return $this->belongsTo('App\Role');
     }
 
-    public function author(){
+    public function author()
+    {
         return $this->belongsTo('App\User', 'created_by');
     }
 }

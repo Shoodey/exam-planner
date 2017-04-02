@@ -22,19 +22,14 @@
                 <div class="box">
                     <div class="box-header">
                     </div>
-                    {{--<admin-courses-list :courses="courses" :current_user="{{ Auth::user()->load('role') }}"></admin-courses-list>--}}
-                    <div class="box-body">
-                        <h1><i class="fa fa-spinner fa-spin fa-fw"></i> Working on it...</h1>
-                        <br>
-                        <br>
-                    </div>
+                    <admin-sections-list :sections="sections" :instructors="instructors" :courses="courses" :current_user="{{ Auth::user()->load('role') }}"></admin-sections-list>
                 </div>
             </div>
 
-            {{--<div class="col-xs-12">--}}
-                {{--<a class="btn btn-primary btn-flat" data-toggle="modal"--}}
-                   {{--data-target="#createCourseModal">Add a new course</a>--}}
-            {{--</div>--}}
+            <div class="col-xs-12">
+                <a class="btn btn-primary btn-flat" data-toggle="modal"
+                   data-target="#createSectionModal">Add a new section</a>
+            </div>
         </div>
     </section>
 @endsection

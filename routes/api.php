@@ -1,6 +1,7 @@
 <?php
 
 use App\Course;
+use App\Section;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -102,3 +103,48 @@ Route::group(['prefix' => 'courses'], function () {
     });
 });
 
+Route::group(['prefix' => 'sections'], function () {
+
+    Route::get('/', function () {
+        return Section::all()->load('author', 'instructor', 'course.school');
+    });
+
+    Route::post('/', function (Request $request) {
+
+        $data = $request->get('section');
+        $created_by = $request->get('created_by');
+
+        $section = new Section();
+
+        $section->course_id = $data['course_id'];
+        $section->user_id = $data['user_id'];
+        $section->students_number = $data['students_number'];
+        $section->created_by = $created_by;
+        $section->code = sprintf('%02d', Course::find($data['course_id'])->sections->count() + 1);;
+
+        $section->save();
+
+        return $section->load('author', 'instructor', 'course.school');
+    });
+
+    Route::put('{id}', function (Request $request, $id) {
+        $data = $request->get('section');
+
+        $section = Section::findOrFail($id);
+
+        $section->students_number = $data['students_number'];
+        $section->user_id = $data['user_id'];
+        $section->course_id = $data['course_id'];
+        $section->code = $data['code'];
+
+        $section->save();
+    });
+
+    Route::delete('{id}', function ($id) {
+        Section::find($id)->delete();
+    });
+});
+
+Route::get('instructors', function () {
+    return User::where('role_id', 4)->get();
+});

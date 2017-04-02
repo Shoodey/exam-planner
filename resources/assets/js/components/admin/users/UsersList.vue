@@ -100,9 +100,9 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-tags"></i></span>
                                         <select class="form-control" v-model="user.role_id">
-                                            <option value="1">Administrator</option>
-                                            <option value="2">Associate</option>
-                                            <option value="3">User</option>
+                                            <option v-if="isAdmin()" value="1">Administrator</option>
+                                            <option v-if="isAdmin()" value="2">Associate</option>
+                                            <option v-if="isAdmin()" value="3">User</option>
                                             <option value="4">Faculty Member</option>
                                             <option value="5">Registration Office</option>
                                         </select>
@@ -165,9 +165,9 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-tags"></i></span>
                                         <select class="form-control" v-model="user.role_id">
-                                            <option value="1">Administrator</option>
-                                            <option value="2">Associate</option>
-                                            <option value="3">User</option>
+                                            <option v-if="isAdmin()" value="1">Administrator</option>
+                                            <option v-if="isAdmin()" value="2">Associate</option>
+                                            <option v-if="isAdmin()" value="3">User</option>
                                             <option value="4">Faculty Member</option>
                                             <option value="5">Registration Office</option>
                                         </select>

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 57);
+/******/ 	return __webpack_require__(__webpack_require__.s = 64);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -11275,17 +11275,20 @@ module.exports = g;
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(40);
-
+__webpack_require__(42);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('dashboard', __webpack_require__(45));
-Vue.component('admin-users-list', __webpack_require__(48));
-Vue.component('admin-courses-list', __webpack_require__(47));
+Vue.component('courses-select', __webpack_require__(53));
+Vue.component('instructors-select', __webpack_require__(232));
+
+Vue.component('dashboard', __webpack_require__(48));
+Vue.component('admin-users-list', __webpack_require__(52));
+Vue.component('admin-courses-list', __webpack_require__(50));
+Vue.component('admin-sections-list', __webpack_require__(51));
 
 toastr.options = {
     "closeButton": false,
@@ -11305,8 +11308,10 @@ var app = new Vue({
     el: '#app',
 
     data: {
-        users: null,
-        courses: null
+        users: [],
+        courses: [],
+        sections: [],
+        instructors: []
     },
 
     created: function created() {
@@ -11328,6 +11333,14 @@ var app = new Vue({
 
         axios.get('/api/courses').then(function (response) {
             _this.courses = response.data;
+        });
+
+        axios.get('/api/sections').then(function (response) {
+            _this.sections = response.data;
+        });
+
+        axios.get('/api/instructors').then(function (response) {
+            _this.instructors = response.data;
         });
     }
 });
@@ -12733,6 +12746,298 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['sections', 'current_user', 'instructors', 'courses'],
+
+    created: function created() {
+        var _this = this;
+
+        this.$events.$on('adminSelectedCourse', function (value) {
+            _this.setCourseID(value);
+        });
+
+        this.$events.$on('adminSelectedInstructor', function (value) {
+            _this.setInstructorID(value);
+        });
+    },
+    data: function data() {
+        return {
+            course_id: null,
+            user_id: null,
+            section: {
+                index: null,
+                id: null,
+                course_id: null,
+                user_id: null,
+                students_number: null,
+                course: {
+                    code: null
+                }
+            }
+        };
+    },
+
+
+    methods: {
+        clearSection: function clearSection() {
+            this.section = {
+                index: null,
+                id: null,
+                course_id: null,
+                user_id: null,
+                students_number: null,
+                course: {
+                    code: null
+                }
+            };
+        },
+        setSection: function setSection(section, index) {
+            this.section = section;
+        },
+        createSection: function createSection() {
+            var _this2 = this;
+
+            this.section.course_id = this.course_id;
+            this.section.user_id = this.user_id;
+            if (this.section.course_id !== null && this.section.user_id !== null) {
+                axios.post('/api/sections/', {
+                    section: this.section,
+                    created_by: this.current_user.id
+                }).then(function (response) {
+                    toastr.success(_this2.section.code + ' - ' + _this2.section.name, 'Course created!');
+                    _this2.sections.push(response.data);
+                    _this2.clearSection();
+                }).catch(function (error) {
+                    console.log(error);
+                    toastr.error('Something happenned.', 'Error!');
+                });
+            } else {
+                toastr.error('Course and instructor required.', 'Error!');
+            }
+        },
+        updateSection: function updateSection() {
+            this.section.course_id = this.course_id;
+            this.section.user_id = this.user_id;
+            var name = this.section.course.code + ' ' + this.section.code;
+            axios.put('/api/sections/' + this.section.id, { section: this.section }).then(function (response) {
+                toastr.success(name, 'Course updated!');
+            }).catch(function (error) {
+                console.log(error);
+                toastr.error('Reload the page.', 'Error!');
+            });
+        },
+        deleteSection: function deleteSection(section, index) {
+            var _this3 = this;
+
+            if (confirm("Are you sure ?")) {
+                var name = section.course.code + ' ' + section.code;
+                axios.delete('/api/sections/' + section.id).then(function (response) {
+                    toastr.success(name, 'Course deleted!');
+                    _this3.sections.splice(index, 1);
+                }).catch(function (error) {
+                    console.log(error);
+                    toastr.error('Reload the page.', 'Error!');
+                });
+            }
+        },
+        labelSchool: function labelSchool(school_id) {
+            switch (school_id) {
+                case "1":
+                    return "label-primary";
+                case "2":
+                    return "label-info";
+                case "3":
+                    return "label-warning";
+                case "4":
+                    return "label-success";
+            }
+        },
+        belongs: function belongs(section) {
+            return section.created_by == this.current_user.id;
+        },
+        isAdmin: function isAdmin() {
+            return this.current_user.role.slug == 'admin';
+        },
+        setCourseID: function setCourseID(value) {
+            this.course_id = value;
+        },
+        setInstructorID: function setInstructorID(value) {
+            this.user_id = value;
+        }
+    }
+
+});
+
+/***/ }),
+/* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -12854,11 +13159,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 40 */
+/* 41 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        'options': {
+            type: Array,
+            required: true,
+            default: function _default() {
+                return [];
+            }
+        },
+        'value': {
+            default: function _default() {
+                return '';
+            }
+        }
+
+    },
+    data: function data() {
+        return {
+            model: ''
+        };
+    },
+    mounted: function mounted() {
+        this.model = this.value;
+    },
+
+    watch: {
+        model: function model(_model) {
+            //                bus.$emit('adminSelectedCourse', model);
+            this.$events.$emit('adminSelectedCourse', _model);
+        },
+        value: function value(_value) {
+            this.model = _value;
+        }
+    }
+});
+
+/***/ }),
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(43);
+window._ = __webpack_require__(45);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -12868,11 +13223,11 @@ window._ = __webpack_require__(43);
 
 window.$ = window.jQuery = __webpack_require__(1);
 
-__webpack_require__(41);
+__webpack_require__(43);
 
 __webpack_require__(17);
-window.toastr = __webpack_require__(44);
-__webpack_require__(42);
+window.toastr = __webpack_require__(46);
+__webpack_require__(44);
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -12880,7 +13235,8 @@ __webpack_require__(42);
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Vue = __webpack_require__(53);
+window.Vue = __webpack_require__(60);
+__webpack_require__(47);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -12901,7 +13257,7 @@ Vue.prototype.trans = function (key) {
 };
 
 //Laravel AdminLTE login input field component
-Vue.component('login-input-field', __webpack_require__(46));
+Vue.component('login-input-field', __webpack_require__(49));
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -12917,7 +13273,7 @@ Vue.component('login-input-field', __webpack_require__(46));
 // });
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/* */ 
@@ -15245,7 +15601,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports) {
 
 /*!
@@ -15760,7 +16116,7 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -32849,10 +33205,10 @@ if (typeof jQuery === 'undefined') {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(55)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(62)(module)))
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -33284,18 +33640,160 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
         })();
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-}(__webpack_require__(54)));
+}(__webpack_require__(61)));
 
 
 /***/ }),
-/* 45 */
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function plugin(Vue) {
+
+  // Exit if the plugin has already been installed.
+  if (plugin.installed) return;
+
+  // Create a `vm` to serve as our global event bus.
+  var events = new Vue({
+    methods: {
+      /**
+       * Emit the given event.
+       *
+       * @param {string|object} event
+       * @param {...*} args
+       */
+      emit: function emit(event) {
+        for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+          args[_key - 1] = arguments[_key];
+        }
+
+        this.$emit.apply(this, [event].concat(args));
+      },
+
+
+      /**
+       * Emit the given event.
+       *
+       * @param {string|object} event
+       * @param {...*} args
+       */
+      fire: function fire(event) {
+        for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+          args[_key2 - 1] = arguments[_key2];
+        }
+
+        this.emit.apply(this, [event].concat(args));
+      },
+
+
+      /**
+       * Listen for the given event.
+       *
+       * @param {string} event
+       * @param {function} callback
+       */
+      on: function on(event, callback) {
+        this.$on(event, callback);
+      },
+
+
+      /**
+       * Listen for the given event.
+       *
+       * @param {string} event
+       * @param {function} callback
+       */
+      listen: function listen(event, callback) {
+        this.on(event, callback);
+      },
+
+
+      /**
+       * Listen for the given event once.
+       *
+       * @param {string} event
+       * @param {function} callback
+       */
+      once: function once(event, callback) {
+        this.$once(event, callback);
+      },
+
+
+      /**
+       * Remove one or more event listeners.
+       *
+       * @param {string} event
+       * @param {function} callback
+       */
+      off: function off(event, callback) {
+        this.$off(event, callback);
+      },
+
+
+      /**
+       * Remove one or more event listeners.
+       *
+       * @param {string} event
+       * @param {function} callback
+       */
+      remove: function remove(event, callback) {
+        this.off(event, callback);
+      }
+    }
+  });
+
+  // Extend `Vue.prototype` to include our global event bus.
+  Object.defineProperty(Vue.prototype, '$events', {
+    get: function get() {
+      return events;
+    }
+  });
+
+  // Register a mixin that adds an `events` option to Vue 2.0 components.
+  Vue.mixin({
+    // Hook into the Vue 2.0 `beforeCreate` life-cycle event.
+    beforeCreate: function beforeCreate() {
+      var _this = this;
+
+      // Exit if there's no `events` option.
+      if (_typeof(this.$options.events) !== 'object') return;
+      // Listen for the `hook:beforeMount` Vue 2.0 life-cycle event.
+      this.$on('hook:beforeMount', function () {
+        // Loop through each event.
+        for (var key in _this.$options.events) {
+          // Register a listener for the event.
+          events.$on(key, _this.$options.events[key].bind(_this));
+        }
+      });
+    }
+  });
+}
+
+// Check for `window.Vue`
+if (typeof window !== 'undefined' && window.Vue) {
+  // Install plugin automatically.
+  window.Vue.use(plugin);
+}
+
+exports.default = plugin;
+
+/***/ }),
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(36),
   /* template */
-  __webpack_require__(52),
+  __webpack_require__(59),
   /* scopeId */
   null,
   /* cssModules */
@@ -33322,14 +33820,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 46 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(37),
   /* template */
-  __webpack_require__(49),
+  __webpack_require__(54),
   /* scopeId */
   null,
   /* cssModules */
@@ -33356,14 +33854,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 47 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(38),
   /* template */
-  __webpack_require__(51),
+  __webpack_require__(57),
   /* scopeId */
   null,
   /* cssModules */
@@ -33390,14 +33888,48 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 48 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(39),
   /* template */
-  __webpack_require__(50),
+  __webpack_require__(55),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\Dev\\wamp\\www\\exam-planner\\resources\\assets\\js\\components\\admin\\users\\SectionsList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] SectionsList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2a9eb16a", Component.options)
+  } else {
+    hotAPI.reload("data-v-2a9eb16a", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(40),
+  /* template */
+  __webpack_require__(56),
   /* scopeId */
   null,
   /* cssModules */
@@ -33424,7 +33956,41 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(41),
+  /* template */
+  __webpack_require__(58),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\Dev\\wamp\\www\\exam-planner\\resources\\assets\\js\\components\\select\\CoursesSelect.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] CoursesSelect.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-757843b9", Component.options)
+  } else {
+    hotAPI.reload("data-v-757843b9", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -33490,7 +34056,303 @@ if (false) {
 }
 
 /***/ }),
-/* 50 */
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "box-body"
+  }, [_c('table', {
+    staticClass: "table table-bordered table-striped",
+    attrs: {
+      "id": "dataTable"
+    }
+  }, [_c('thead', [_c('tr', [_c('th', [_vm._v("School")]), _vm._v(" "), _c('th', [_vm._v("Course")]), _vm._v(" "), _c('th', [_vm._v("Section")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('th', [_vm._v("Number of students")]), _vm._v(" "), (_vm.isAdmin()) ? _c('th', [_vm._v("Created By")]) : _vm._e(), _vm._v(" "), _c('th', [_vm._v("Actions")])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.sections), function(section, index) {
+    return _c('tr', [_c('td', [_c('span', {
+      staticClass: "label",
+      class: _vm.labelSchool(section.course.school_id)
+    }, [_vm._v("\n                        " + _vm._s(section.course.school.name) + "\n                    ")])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(section.course.code) + " - " + _vm._s(section.course.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(section.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(section.instructor.aid) + " - " + _vm._s(section.instructor.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(section.students_number))]), _vm._v(" "), (_vm.isAdmin()) ? _c('td', [_vm._v(_vm._s(section.author.name) + " ")]) : _vm._e(), _vm._v(" "), (!_vm.isAdmin()) ? [(_vm.belongs(section)) ? _c('td', {
+      staticClass: "col-md-2"
+    }, [_c('button', {
+      staticClass: "btn btn-primary btn-flat",
+      attrs: {
+        "data-toggle": "modal",
+        "data-target": "#updateSectionModal"
+      },
+      on: {
+        "click": function($event) {
+          _vm.setSection(section, index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil"
+    })]), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-danger btn-flat",
+      on: {
+        "click": function($event) {
+          _vm.deleteSection(section, index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times"
+    })])]) : _c('td', {
+      staticClass: "col-md-2"
+    }, [_vm._v("Not yours to manage.")])] : [_c('td', {
+      staticClass: "col-md-2"
+    }, [_c('button', {
+      staticClass: "btn btn-primary btn-flat",
+      attrs: {
+        "data-toggle": "modal",
+        "data-target": "#updateSectionModal"
+      },
+      on: {
+        "click": function($event) {
+          _vm.setSection(section, index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-pencil"
+    })]), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-danger btn-flat",
+      on: {
+        "click": function($event) {
+          _vm.deleteSection(section, index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-times"
+    })])])]], 2)
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "createSectionModal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog"
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-12"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("Course")]), _vm._v(" "), _c('courses-select', {
+    attrs: {
+      "options": _vm.courses
+    }
+  })], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-12"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("Instructor")]), _vm._v(" "), _c('instructors-select', {
+    attrs: {
+      "options": _vm.instructors
+    }
+  })], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("Number of students")]), _vm._v(" "), _c('div', {
+    staticClass: "input-group"
+  }, [_vm._m(2), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.section.students_number),
+      expression: "section.students_number"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "placeholder": "A random number, guess :)"
+    },
+    domProps: {
+      "value": (_vm.section.students_number)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.section.students_number = $event.target.value
+      }
+    }
+  })])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-success",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal"
+    },
+    on: {
+      "click": function($event) {
+        _vm.createSection()
+      }
+    }
+  }, [_vm._v("\n                        Save\n                    ")])])])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal fade",
+    attrs: {
+      "id": "updateSectionModal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-dialog"
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('div', {
+    staticClass: "modal-header"
+  }, [_vm._m(3), _vm._v(" "), _c('h4', {
+    staticClass: "modal-title"
+  }, [_vm._v("Update section " + _vm._s(_vm.section.course.code) + " " + _vm._s(_vm.section.code))])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-6"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("Code")]), _vm._v(" "), _c('div', {
+    staticClass: "input-group"
+  }, [_vm._m(4), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.section.code),
+      expression: "section.code"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.section.code)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.section.code = $event.target.value
+      }
+    }
+  })])])]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("Number of students")]), _vm._v(" "), _c('div', {
+    staticClass: "input-group"
+  }, [_vm._m(5), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.section.students_number),
+      expression: "section.students_number"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.section.students_number)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.section.students_number = $event.target.value
+      }
+    }
+  })])])]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-12"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("Course")]), _vm._v(" "), _c('courses-select', {
+    attrs: {
+      "options": _vm.courses,
+      "value": _vm.section.course_id
+    }
+  })], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-12"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("Instructor")]), _vm._v(" "), _c('instructors-select', {
+    attrs: {
+      "options": _vm.instructors,
+      "value": _vm.section.user_id
+    }
+  })], 1)])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-success",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal"
+    },
+    on: {
+      "click": function($event) {
+        _vm.updateSection()
+      }
+    }
+  }, [_vm._v("Save")])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('th', [_vm._v("Instructor "), _c('br'), _c('small', [_vm._v("(refresh)")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "modal-header"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]), _vm._v(" "), _c('h4', {
+    staticClass: "modal-title"
+  }, [_vm._v("Create section")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', {
+    staticClass: "input-group-addon"
+  }, [_c('i', {
+    staticClass: "fa fa-users"
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', {
+    staticClass: "input-group-addon"
+  }, [_c('i', {
+    staticClass: "fa fa-tag"
+  })])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('span', {
+    staticClass: "input-group-addon"
+  }, [_c('i', {
+    staticClass: "fa fa-users"
+  })])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2a9eb16a", module.exports)
+  }
+}
+
+/***/ }),
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -33675,19 +34537,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.user.role_id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }
     }
-  }, [_c('option', {
+  }, [(_vm.isAdmin()) ? _c('option', {
     attrs: {
       "value": "1"
     }
-  }, [_vm._v("Administrator")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("Administrator")]) : _vm._e(), _vm._v(" "), (_vm.isAdmin()) ? _c('option', {
     attrs: {
       "value": "2"
     }
-  }, [_vm._v("Associate")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("Associate")]) : _vm._e(), _vm._v(" "), (_vm.isAdmin()) ? _c('option', {
     attrs: {
       "value": "3"
     }
-  }, [_vm._v("User")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("User")]) : _vm._e(), _vm._v(" "), _c('option', {
     attrs: {
       "value": "4"
     }
@@ -33829,19 +34691,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.user.role_id = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }
     }
-  }, [_c('option', {
+  }, [(_vm.isAdmin()) ? _c('option', {
     attrs: {
       "value": "1"
     }
-  }, [_vm._v("Administrator")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("Administrator")]) : _vm._e(), _vm._v(" "), (_vm.isAdmin()) ? _c('option', {
     attrs: {
       "value": "2"
     }
-  }, [_vm._v("Associate")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("Associate")]) : _vm._e(), _vm._v(" "), (_vm.isAdmin()) ? _c('option', {
     attrs: {
       "value": "3"
     }
-  }, [_vm._v("User")]), _vm._v(" "), _c('option', {
+  }, [_vm._v("User")]) : _vm._e(), _vm._v(" "), _c('option', {
     attrs: {
       "value": "4"
     }
@@ -33951,7 +34813,7 @@ if (false) {
 }
 
 /***/ }),
-/* 51 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -34338,7 +35200,50 @@ if (false) {
 }
 
 /***/ }),
-/* 52 */
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.model),
+      expression: "model"
+    }],
+    staticClass: "form-control ",
+    staticStyle: {
+      "width": "100%"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.model = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, _vm._l((_vm.options), function(opt) {
+    return _c('option', {
+      domProps: {
+        "value": opt.id
+      }
+    }, [_vm._v(_vm._s(opt.code) + " - " + _vm._s(opt.name))])
+  }))
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-757843b9", module.exports)
+  }
+}
+
+/***/ }),
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -34365,7 +35270,7 @@ if (false) {
 }
 
 /***/ }),
-/* 53 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43693,7 +44598,7 @@ module.exports = Vue$3;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(10)))
 
 /***/ }),
-/* 54 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -43702,7 +44607,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 55 */
+/* 62 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -43730,8 +44635,8 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 56 */,
-/* 57 */
+/* 63 */,
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
@@ -43740,6 +44645,299 @@ __webpack_require__(16);
 __webpack_require__(13);
 module.exports = __webpack_require__(14);
 
+
+/***/ }),
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        'options': {
+            type: Array,
+            required: true,
+            default: function _default() {
+                return [];
+            }
+        },
+        'value': {
+            default: function _default() {
+                return '';
+            }
+        }
+
+    },
+    data: function data() {
+        return {
+            model: ''
+        };
+    },
+    mounted: function mounted() {
+        this.model = this.value;
+    },
+
+    watch: {
+        model: function model(_model) {
+            //                bus.$emit('adminSelectedCourse', model);
+            this.$events.$emit('adminSelectedInstructor', _model);
+        },
+        value: function value(_value) {
+            this.model = _value;
+        }
+    }
+});
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(231),
+  /* template */
+  __webpack_require__(233),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\Dev\\wamp\\www\\exam-planner\\resources\\assets\\js\\components\\select\\InstructorsSelect.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] InstructorsSelect.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f6f1c112", Component.options)
+  } else {
+    hotAPI.reload("data-v-f6f1c112", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.model),
+      expression: "model"
+    }],
+    staticClass: "form-control ",
+    staticStyle: {
+      "width": "100%"
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.model = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, _vm._l((_vm.options), function(opt) {
+    return _c('option', {
+      domProps: {
+        "value": opt.id
+      }
+    }, [_vm._v(_vm._s(opt.aid) + " - " + _vm._s(opt.name))])
+  }))
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-f6f1c112", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

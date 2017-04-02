@@ -22,6 +22,7 @@ require('icheck');
  */
 
 window.Vue = require('vue');
+require('vue-events');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
