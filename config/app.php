@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://aui-ep.herokuapp.com'),
+    'url' => env('APP_URL', 'http://aui-ep.herokuapp.com'),
 
     /*
     |--------------------------------------------------------------------------

@@ -201,7 +201,10 @@
                     name: null,
                     email: null,
                     password: null,
-                    role_id: null
+                    role_id: null,
+                    role: {
+                        name: null
+                    }
                 },
             }
         },
@@ -210,10 +213,15 @@
 
             clearUser(){
                 this.user = {
+                    index: null,
+                    id: null,
                     name: null,
                     email: null,
                     password: null,
-                    role_id: null
+                    role_id: null,
+                    role: {
+                        name: null
+                    }
                 }
             },
 
