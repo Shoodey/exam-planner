@@ -212,7 +212,7 @@
             },
 
             updateCourse(){
-                axios.put('/api/courses' + this.course.id, {course: this.course}).then(response => {
+                axios.put('/api/courses/' + this.course.id, {course: this.course}).then(response => {
                     toastr.success(this.course.code + ' - ' + this.course.name, 'Course updated!');
                 }).catch(error => {
                     console.log(error);
@@ -224,7 +224,7 @@
                 if (confirm("Are you sure ?")) {
                     let code = course.code;
                     let name = course.name;
-                    axios.delete('/api/courses' + course.id).then(response => {
+                    axios.delete('/api/courses/' + course.id).then(response => {
                         toastr.success(code + ' - ' + name, 'Course deleted!');
                         this.courses.splice(index, 1);
                     }).catch(error => {

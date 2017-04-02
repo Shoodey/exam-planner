@@ -241,7 +241,7 @@
             },
 
             updateUser(){
-                axios.put('/api/users' + this.user.id, {user: this.user}).then(response => {
+                axios.put('/api/users/' + this.user.id, {user: this.user}).then(response => {
                     toastr.success(this.user.name, 'User updated!');
                 }).catch(error => {
                     console.log(error);
@@ -251,7 +251,7 @@
 
             deleteUser(user, index){
                 if (confirm("Are you sure ?")) {
-                    axios.delete('/api/users' + user.id).then(response => {
+                    axios.delete('/api/users/' + user.id).then(response => {
                         toastr.success(user.name, 'User deleted!');
                         this.users.splice(index, 1);
                     }).catch(error => {

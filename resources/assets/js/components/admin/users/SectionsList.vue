@@ -235,7 +235,7 @@
                 this.section.course_id = this.course_id;
                 this.section.user_id = this.user_id;
                 let name = this.section.course.code + ' ' + this.section.code;
-                axios.put('/api/sections' + this.section.id, {section: this.section}).then(response => {
+                axios.put('/api/sections/' + this.section.id, {section: this.section}).then(response => {
                     toastr.success(name, 'Course updated!');
                 }).catch(error => {
                     console.log(error);
@@ -246,7 +246,7 @@
             deleteSection(section, index){
                 if (confirm("Are you sure ?")) {
                     let name = section.course.code + ' ' + section.code;
-                    axios.delete('/api/sections' + section.id).then(response => {
+                    axios.delete('/api/sections/' + section.id).then(response => {
                         toastr.success(name, 'Course deleted!');
                         this.sections.splice(index, 1);
                     }).catch(error => {
