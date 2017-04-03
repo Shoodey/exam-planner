@@ -38,11 +38,11 @@
                                         </div>
 
                                         <h4>
-                                            B. Falah
+                                            John Doe
                                             <small><i class="fa fa-clock-o"></i> 5 mins</small>
                                         </h4>
 
-                                        <p>Most unusual, final spaces rudely infiltrate.</p>
+                                        <p>Joined sections for common exams.</p>
                                     </a>
                                 </li>
                             </ul>
@@ -64,8 +64,7 @@
                             <ul class="menu">
                                 <li>
                                     <a href="javascript:void(0)">
-                                        <i class="fa fa-calendar text-danger"></i> The real klingon never infiltrates
-                                        the transformator.
+                                        <i class="fa fa-calendar text-danger"></i> Your scheduling requests have been approved.
                                     </a>
                                 </li>
                             </ul>
