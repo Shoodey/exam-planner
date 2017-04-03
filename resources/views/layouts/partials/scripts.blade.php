@@ -12,6 +12,7 @@
 
 <script src="{{ asset('/plugins/select2.full.min.js') }}" type="text/javascript"></script>
 
+<script src="{{ asset('/plugins/ion.rangeSlider.min.js') }}" type="text/javascript"></script>
 
 <script>
     window.Laravel = {!! json_encode([

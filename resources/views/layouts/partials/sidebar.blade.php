@@ -26,21 +26,37 @@
             @if(Auth::user()->role->slug == 'admin' || Auth::user()->role->slug == 'associate')
                 <li class="header">Administration</li>
 
-                <li class="{{ $menu == 'users' ? 'active' : '' }}">
+                <li class="{{ $menu == 'admin.users' ? 'active' : '' }}">
                     <a href="{{ route('admin.users.index') }}">
                         <i class='fa fa-users'></i> <span>Users</span>
                     </a>
                 </li>
 
-                <li class="{{ $menu == 'courses' ? 'active' : '' }}">
+                <li class="{{ $menu == 'admin.courses' ? 'active' : '' }}">
                     <a href="{{ route('admin.courses.index') }}">
                         <i class='fa fa-book'></i> <span>Courses</span>
                     </a>
                 </li>
 
-                <li class="{{ $menu == 'sections' ? 'active' : '' }}">
+                <li class="{{ $menu == 'admin.sections' ? 'active' : '' }}">
                     <a href="{{ route('admin.sections.index') }}">
                         <i class='fa fa-tags'></i> <span>Sections</span>
+                    </a>
+                </li>
+            @endif
+
+            @if(Auth::user()->role->slug == 'admin' || Auth::user()->role->slug == 'faculty_member')
+                <li class="header">Faculty</li>
+
+                <li class="{{ $menu == 'faculty.courses' ? 'active' : '' }}">
+                    <a href="{{ route('faculty.courses.index') }}">
+                        <i class='fa fa-book'></i> <span>Courses</span>
+                    </a>
+                </li>
+
+                <li class="{{ $menu == 'faculty.requests' ? 'active' : '' }}">
+                    <a href="{{ route('faculty.requests.index') }}">
+                        <i class='fa fa-plus'></i> <span>Requests</span>
                     </a>
                 </li>
             @endif

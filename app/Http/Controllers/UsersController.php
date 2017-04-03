@@ -10,9 +10,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function admin_index()
     {
-        $menu = 'users';
+        $menu = 'admin.users';
         return view('admin.users.index', compact('menu'));
     }
 }

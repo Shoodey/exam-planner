@@ -11,14 +11,23 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import vSelect from 'vue-select'
+Vue.component('v-select', vSelect)
+
 Vue.component('courses-select', require('./components/select/CoursesSelect.vue'));
 Vue.component('instructors-select', require('./components/select/InstructorsSelect.vue'));
 
 
 Vue.component('dashboard', require('./components/Dashboard.vue'));
-Vue.component('admin-users-list', require('./components/admin/users/UsersList.vue'));
-Vue.component('admin-courses-list', require('./components/admin/users/CoursesList.vue'));
-Vue.component('admin-sections-list', require('./components/admin/users/SectionsList.vue'));
+
+Vue.component('admin-users-list', require('./components/admin/UsersList.vue'));
+Vue.component('admin-courses-list', require('./components/admin/CoursesList.vue'));
+Vue.component('admin-sections-list', require('./components/admin/SectionsList.vue'));
+
+Vue.component('faculty-courses-list', require('./components/faculty/CoursesList.vue'));
+Vue.component('faculty-requests-list', require('./components/faculty/RequestsList.vue'));
+Vue.component('faculty-requests-create', require('./components/faculty/RequestsCreate.vue'));
+
 
 toastr.options = {
     "closeButton": false,
@@ -49,7 +58,7 @@ const app = new Vue({
 
         axios.get('/api/users').then(response => {
             this.users = response.data;
-            setTimeout(function () {
+            // setTimeout(function () {
                 $('#dataTable').DataTable({
                     "paging": true,
                     "lengthChange": true,
@@ -58,7 +67,7 @@ const app = new Vue({
                     "info": true,
                     "autoWidth": false
                 });
-            }, 500);
+            // }, 500);
 
         });
 

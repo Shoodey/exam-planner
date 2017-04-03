@@ -44,4 +44,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\User', 'created_by');
     }
+
+    public function sections(){
+        return $this->hasMany('App\Section');
+    }
 }

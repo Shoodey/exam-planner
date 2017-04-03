@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
                 'name'     => "KAFOU Fatiha",
                 'email'    => "68976@aui.ma",
                 'password' => bcrypt('uir'),
-                'role_id'  => 2,
+                'role_id'  => 3,
                 'created_by' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
                 'name'     => "ELABRIDI Ali",
                 'email'    => "59967@aui.ma",
                 'password' => bcrypt('spock'),
-                'role_id'  => 2,
+                'role_id'  => 3,
                 'created_by' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
                 'name'     => "TAHRI-SQALLI Mohammed",
                 'email'    => "54320@aui.ma",
                 'password' => bcrypt('robots'),
-                'role_id'  => 2,
+                'role_id'  => 3,
                 'created_by' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -53,7 +53,7 @@ class UsersTableSeeder extends Seeder
                 'name'     => "LAMAAKEL Oumaima",
                 'email'    => "56396@aui.ma",
                 'password' => bcrypt('robotics'),
-                'role_id'  => 2,
+                'role_id'  => 3,
                 'created_by' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -62,11 +62,65 @@ class UsersTableSeeder extends Seeder
                 'name'     => "ANZER Mohammed",
                 'email'    => "65134@aui.ma",
                 'password' => bcrypt('hci'),
-                'role_id'  => 2,
+                'role_id'  => 3,
                 'created_by' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-            ]
+            ],
+
+            [
+                'name'     => "John DOE",
+                'email'    => "00000@aui.ma",
+                'password' => bcrypt('aui'),
+                'role_id'  => 4,
+                'created_by' => 1,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+
+            /*
+             * SBA
+             */
+            [
+                'name'     => "Abdelhamid ALAOUI HAMIDI",
+                'email'    => "55088@aui.ma",
+                'password' => bcrypt('aui'),
+                'role_id'  => 4,
+                'created_by' => 1,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'name'     => "Ghizlane HAMMOUD",
+                'email'    => "13414@aui.ma",
+                'password' => bcrypt('aui'),
+                'role_id'  => 4,
+                'created_by' => 1,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+
+            /*
+             * SHSS
+             */
+            [
+                'name'     => "Karim MOUSTAGHFIR",
+                'email'    => "30678@aui.ma",
+                'password' => bcrypt('aui'),
+                'role_id'  => 4,
+                'created_by' => 1,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'name'     => "Bouziane ZAID",
+                'email'    => "30685@aui.ma",
+                'password' => bcrypt('aui'),
+                'role_id'  => 4,
+                'created_by' => 1,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
         ]);
 
 //        factory(App\User::class, 3)->create();

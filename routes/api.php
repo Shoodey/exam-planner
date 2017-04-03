@@ -1,6 +1,7 @@
 <?php
 
 use App\Course;
+use App\Notification;
 use App\Section;
 use App\User;
 use Illuminate\Http\Request;
@@ -147,4 +148,15 @@ Route::group(['prefix' => 'sections'], function () {
 
 Route::get('instructors', function () {
     return User::where('role_id', 4)->get();
+});
+
+Route::post('notify', function (Request $request) {
+    $notification = new Notification();
+
+    $notification->from = $request->get('from');
+    $notification->to = $request->get('to');
+    $notification->section = $request->get('section');
+
+    $notification->save();
+
 });

@@ -12,9 +12,9 @@ class SectionsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function admin_index()
     {
-        $menu = 'sections';
+        $menu = 'admin.sections';
         return view('admin.sections.index', compact('menu'));
     }
 }
