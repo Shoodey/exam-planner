@@ -26,6 +26,7 @@
         </div>
         @section('scripts')
             @include('layouts.partials.scripts')
+            @yield('custom_scripts')
         @show
 
     </body>

@@ -14,6 +14,9 @@
 
 <script src="{{ asset('/plugins/ion.rangeSlider.min.js') }}" type="text/javascript"></script>
 
+<script src="{{ asset('/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/plugins/daterangepicker.js') }}" type="text/javascript"></script>
+
 <script>
     window.Laravel = {!! json_encode([
         'csrfToken' => csrf_token(),

@@ -28,6 +28,10 @@ Vue.component('faculty-courses-list', require('./components/faculty/CoursesList.
 Vue.component('faculty-requests-list', require('./components/faculty/RequestsList.vue'));
 Vue.component('faculty-requests-create', require('./components/faculty/RequestsCreate.vue'));
 
+Vue.component('registrar-requests-list', require('./components/registrar/RequestsList.vue'));
+Vue.component('registrar-settings', require('./components/registrar/Settings.vue'));
+
+
 
 toastr.options = {
     "closeButton": false,

@@ -64,7 +64,7 @@
                             <ul class="menu">
                                 <li>
                                     <a href="javascript:void(0)">
-                                        <i class="fa fa-calendar text-danger"></i> Sscheduling requests approved.
+                                        <i class="fa fa-calendar text-danger"></i> Scheduling requests approved.
                                     </a>
                                 </li>
                             </ul>

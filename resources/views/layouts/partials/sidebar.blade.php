@@ -61,6 +61,34 @@
                 </li>
             @endif
 
+            @if(Auth::user()->role->slug == 'admin' || Auth::user()->role->slug == 'registration_office')
+                <li class="header">Registrar</li>
+
+                <li class="{{ $menu == 'registrar.settings' ? 'active' : '' }}">
+                    <a href="{{ route('registrar.settings') }}">
+                        <i class='fa fa-cogs'></i> <span>Settings</span>
+                    </a>
+                </li>
+
+                <li class="{{ $menu == 'registrar.requests' ? 'active' : '' }}">
+                    <a href="{{ route('registrar.requests.index') }}">
+                        <i class='fa fa-tags'></i> <span>Requests</span>
+                    </a>
+                </li>
+
+                <li class="{{ $menu == 'registrar.tentatives' ? 'active' : '' }}">
+                    <a href="{{ route('registrar.tentatives') }}">
+                        <i class='fa fa-th-list'></i> <span>Schedule tentatives</span>
+                    </a>
+                </li>
+
+                <li class="{{ $menu == 'registrar.calendar' ? 'active' : '' }}">
+                    <a href="{{ route('registrar.calendar') }}">
+                        <i class='fa fa-calendar'></i> <span>Calendar</span>
+                    </a>
+                </li>
+            @endif
+
         </ul>
     </section>
 

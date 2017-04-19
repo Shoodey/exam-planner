@@ -16,14 +16,14 @@ class RolesTableSeeder extends Seeder
                 'name'  => "Administrator",
                 'slug'  => "admin"
             ],
-            [
-                'name'  => "Associate",
-                'slug'  => "associate"
-            ],
-            [
-                'name'  => "User",
-                'slug'  => "user"
-            ],
+//            [
+//                'name'  => "Associate",
+//                'slug'  => "associate"
+//            ],
+//            [
+//                'name'  => "User",
+//                'slug'  => "user"
+//            ],
             [
                 'name'  => "Faculty Member",
                 'slug'  => "faculty_member"

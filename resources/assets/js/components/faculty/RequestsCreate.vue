@@ -15,10 +15,10 @@
         <div v-show="step == 1">
             <div class="box-body">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-10 col-md-offset-1">
                         <div class="form-group">
                             <h4>Select courses</h4>
-                            <v-select placeholder="Press to select one or multiple courses."
+                            <v-select placeholder="Press to select one or multiple courses. Click outside to close drawer."
                                       v-model="selected_courses" id="v-select" multiple
                                       :options="courses"></v-select>
                         </div>
@@ -50,11 +50,10 @@
                                 <th>Section</th>
                                 <th width="150px">Nb. of student</th>
                                 <th>Instructor</th>
-                                <th>Notify</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <template v-for="course in courses">
+                            <template v-for="course in selected_courses">
                                 <tr v-for="(section, index) in course.sections">
                                     <td style="vertical-align: middle; text-align: center"
                                         :rowspan="course.sections.length" v-if="index == 0">
@@ -62,21 +61,14 @@
 
                                     </td>
                                     <td width="10px" style="text-align: center">
-                                        <input type="checkbox" class="minimal" checked>
+                                        <input type="checkbox" class="minimal" :checked="isCurrentUser(section.instructor)">
                                     </td>
                                     <td>{{ section.code }}</td>
                                     <td>{{ section.students_number }}</td>
-                                    <td>
+                                    <td v-if="!isCurrentUser(section.instructor)">
                                         {{ section.instructor.aid }} - {{ section.instructor.name }}
-
                                     </td>
-                                    <td>
-                                        <button class="btn btn-default btn-flat"
-                                                v-if="!isCurrentUser(section.instructor)"
-                                                @click="notify(section)">
-                                            <i class="fa fa-envelope text-green"></i>
-                                        </button>
-                                    </td>
+                                    <td v-else></td>
                                 </tr>
 
                             </template>
@@ -99,22 +91,53 @@
 
         <div v-show="step == 3">
             <div class="box-body">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Exam start and end time</h4>
-                            <div class="col-md-12">
-                                <input id="time_range" type="text" name="break_range" value="">
-                            </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Room preference</h4>
+                        <div class="col-md-3">
+                            <label>
+                                <input type="radio" name="room" checked>
+                                Any room
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>
+                                <input type="radio" name="room">
+                                Auditorium
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>
+                                <input type="radio" name="room">
+                                Individual desks
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>
+                                <input type="radio" name="room">
+                                Table seating
+                            </label>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Exam duration</h4>
-                            <div class="col-sm-12">
-                                <input id="duration_range" type="text" name="duration_range" value="">
-                            </div>
+                    <div class="col-md-12">
+                        <h4>Proctors</h4>
+                        <div class="col-md-3">
+                            <label>
+                                <input type="radio" name="proctor" checked>
+                                None
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>
+                                <input type="radio" name="proctor">
+                                Assign them for me
+                            </label>
+                        </div>
+                        <div class="col-md-3">
+                            <label>
+                                <input type="radio" name="proctor">
+                                I got my own
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -146,7 +169,6 @@
                 step: 1,
                 max_steps: 3,
                 progress: 0,
-                notified: false,
                 selected_courses: [],
                 selected_sections: [],
             }
@@ -177,11 +199,8 @@
             },
 
             saveSections(){
-                if (!this.notified) {
-                    toastr.error('No one notified.', 'Error!');
-                } else {
-                    this.nextStep()
-                }
+                toastr.success('Instructors have been notified.', 'Success!');
+                this.nextStep();
             },
 
             saveAll(){
@@ -190,20 +209,6 @@
 
             isCurrentUser(user){
                 return user.id == this.current_user.id;
-            },
-
-            notify(section){
-                axios.post('/api/notify', {
-                    from: this.current_user.id,
-                    to: section.instructor.id,
-                    section: section.id
-                }).then(response => {
-                    toastr.success(section.instructor.name, 'Notified');
-                    this.notified = true;
-                }).catch(error => {
-                    console.log(error);
-                    toastr.error('Something went wrong.', 'Error!');
-                });
             }
 
         },
@@ -244,7 +249,6 @@
 </script>
 
 <style>
-    /* Cyan theme */
     #v-select .selected-tag {
         color: #dedede;
         background-color: #008D4C;
@@ -265,5 +269,12 @@
     #v-select.dropdown li:hover a {
         background: #00A65A;
         color: #fff;
+    }
+
+    #v-select .close {
+        color: #dedede;
+        opacity: 1;
+        text-shadow: 0 0 0px white;
+        font-weight: 100;
     }
 </style>

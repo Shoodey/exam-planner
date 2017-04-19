@@ -14,6 +14,50 @@
     <link href="{{ asset('/plugins/ion.rangeSlider.css') }}" rel="stylesheet" >
     <link href="{{ asset('/plugins/ion.rangeSlider.skinNice.css') }}" rel="stylesheet" >
 
+    <link href="{{ asset('/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('/fullcalendar/fullcalendar.print.css') }}" rel="stylesheet" media="print"/>
+    <link href="{{ asset('/plugins/daterangepicker.css') }}" rel="stylesheet" />
+
+    <style>
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            width: 49.8%;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -28,9 +72,7 @@
     </script>
 
     <script>
-        //See https://laracasts.com/discuss/channels/vue/use-trans-in-vuejs
         window.trans = @php
-            // copy all translations from /resources/lang/CURRENT_LOCALE/* to global JS variable
             $lang_files = File::files(resource_path() . '/lang/' . App::getLocale());
             $trans = [];
             foreach ($lang_files as $f) {

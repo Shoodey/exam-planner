@@ -30,6 +30,25 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('requests/create', 'RequestsController@faculty_create')->name('faculty.requests.create');
     });
 
+    Route::group(['prefix' => 'registrar'], function () {
+        Route::get('requests', 'RequestsController@registrar_index')->name('registrar.requests.index');
+
+        Route::get('tentatives', function() {
+            $menu = 'registrar.tentatives';
+            return view('registrar.tentatives', compact('menu'));
+        })->name('registrar.tentatives');
+
+        Route::get('settings', function() {
+            $menu = 'registrar.settings';
+            return view('registrar.settings', compact('menu'));
+        })->name('registrar.settings');
+
+        Route::get('calendar', function() {
+            $menu = 'registrar.calendar';
+            return view('registrar.calendar', compact('menu'));
+        })->name('registrar.calendar');
+    });
+
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
 });

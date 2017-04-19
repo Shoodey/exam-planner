@@ -9,8 +9,7 @@
                         <th>Course</th>
                         <th>Section</th>
                         <th width="150px">Nb. of student</th>
-                        <th>Instructor</th>
-                        <th>Actions</th>
+                        <th>Instructor / Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,33 +18,19 @@
                             <td style="vertical-align: middle; text-align: center"
                                 :rowspan="course.sections.length" v-if="is == 0">
                                 {{ course.label }}
-
                             </td>
                             <td>{{ section.code }}</td>
                             <td>{{ section.students_number }}</td>
-                            <td>
-                                {{ section.instructor.aid }} - {{ section.instructor.name }}
-
-
-
-                            </td>
-                            <td>
-                                <template v-if="isCurrentUser(section.instructor)">
-                                    <button @click="editRequest()" class="btn btn-primary btn-flat">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                    <button @click="deleteRequest(section, ic, is)" class="btn btn-danger btn-flat">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </template>
-                                <template v-else>
-                                    Not yours to manage.
-
-
-                                </template>
+                            <td v-if="!isCurrentUser(section.instructor)" class="text-center"> {{ section.instructor.aid }} - {{ section.instructor.name }}</td>
+                            <td v-else class="text-center">
+                                <button @click="editRequest()" class="btn btn-primary btn-flat">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                                <button @click="deleteRequest(section, ic, is)" class="btn btn-danger btn-flat">
+                                    <i class="fa fa-times"></i>
+                                </button>
                             </td>
                         </tr>
-
                     </template>
                 </tbody>
             </table>
