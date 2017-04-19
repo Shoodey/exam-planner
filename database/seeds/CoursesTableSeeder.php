@@ -93,6 +93,28 @@ class CoursesTableSeeder extends Seeder
                 'school_id'  => 2,
                 'created_by' => 1
             ],
+
+            /*
+             * VESNA
+             */
+            [
+                'code'       => "COM 2403",
+                'name'       => "Photography and Visual Storytelling",
+                'school_id'  => 2,
+                'created_by' => 1
+            ],
+            [
+                'code'       => "COM 2427",
+                'name'       => "Art and Design",
+                'school_id'  => 2,
+                'created_by' => 1
+            ],
+            [
+                'code'       => "COM 2425",
+                'name'       => "Print and Online Production",
+                'school_id'  => 2,
+                'created_by' => 1
+            ],
         ]);
     }
 }

@@ -131,6 +131,16 @@ class UsersTableSeeder extends Seeder
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
+
+            [
+                'name'       => "Vesna Dragojlov",
+                'email'      => "72639@aui.ma",
+                'password'   => bcrypt('aui'),
+                'role_id'    => 2,
+                'created_by' => 1,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
         ]);
 
 //        factory(App\User::class, 3)->create();

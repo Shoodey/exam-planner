@@ -304,6 +304,62 @@ class SectionsTableSeeder extends Seeder
                 'students_number' => rand(10, 50),
                 'created_by'      => 1
             ],
+
+
+            /*
+             * VEsNA
+             */
+            [
+                'code'            => "01",
+                'user_id'         => 13,
+                'course_id'       => 13,
+                'students_number' => rand(10, 50),
+                'created_by'      => 1
+            ],
+            [
+                'code'            => "02",
+                'user_id'         => 13,
+                'course_id'       => 13,
+                'students_number' => rand(10, 50),
+                'created_by'      => 1
+            ],
+            [
+                'code'            => "03",
+                'user_id'         => 13,
+                'course_id'       => 13,
+                'students_number' => rand(10, 50),
+                'created_by'      => 1
+            ],
+
+            [
+                'code'            => "01",
+                'user_id'         => 13,
+                'course_id'       => 14,
+                'students_number' => rand(10, 50),
+                'created_by'      => 1
+            ],
+            [
+                'code'            => "02",
+                'user_id'         => 7,
+                'course_id'       => 14,
+                'students_number' => rand(10, 50),
+                'created_by'      => 1
+            ],
+
+            [
+                'code'            => "01",
+                'user_id'         => 13,
+                'course_id'       => 15,
+                'students_number' => rand(10, 50),
+                'created_by'      => 1
+            ],
+            [
+                'code'            => "02",
+                'user_id'         => 7,
+                'course_id'       => 15,
+                'students_number' => rand(10, 50),
+                'created_by'      => 1
+            ],
         ]);
     }
 }
