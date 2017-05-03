@@ -178,7 +178,7 @@
                 progress: 0,
                 selected_courses: [],
                 selected_sections: [],
-                room_type: 'desks'
+                room_type: 'any'
             }
         },
         computed: {
