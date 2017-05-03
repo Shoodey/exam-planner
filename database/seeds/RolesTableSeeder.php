@@ -29,7 +29,7 @@ class RolesTableSeeder extends Seeder
                 'slug'  => "faculty_member"
             ],
             [
-                'name'  => "Regitration Office",
+                'name'  => "Registration Office",
                 'slug'  => "registration_office"
             ]
         ]);

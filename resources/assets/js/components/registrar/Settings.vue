@@ -19,9 +19,10 @@
                     <div class="col-md-10 col-md-offset-1">
                         <div class="form-group">
                             <h4>Select buildings</h4>
-                            <v-select placeholder="Press to select one or multiple buildings."
-                                      v-model="selected_buildings" id="v-select" multiple
-                                      :options="buildings"></v-select>
+                            <v-select
+                                    placeholder="Press to select one or multiple buildings. Click outside to close drawer."
+                                    v-model="selected_buildings" id="v-select" multiple
+                                    :options="buildings"></v-select>
                         </div>
                     </div>
                 </div>
@@ -30,10 +31,12 @@
                 <button :class="{disabled: step == 1}" class="btn btn-success btn-flat pull-left">
                     Previous
 
+
                 </button>
                 <button :class="{disabled: step == 5}" class="btn btn-success btn-flat pull-right"
                         @click="saveBuildings">
                     Next
+
 
                 </button>
             </div>
@@ -63,6 +66,7 @@
 
 
 
+
                                     </td>
                                     <td width="10px" style="text-align: center">
                                         <input type="checkbox" class="minimal" checked>
@@ -83,9 +87,11 @@
                     Previous
 
 
+
                 </button>
                 <button :class="{disabled: step == 5}" class="btn btn-success btn-flat pull-right"
                         @click="nextStep">Next
+
 
 
                 </button>
@@ -95,13 +101,10 @@
         <div v-show="step == 3">
             <div class="box-body">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <h4>Select date range
-
-                            <small>Maximum of 3 days</small>
-                        </h4>
-                        <div class="input-group">
-                            <div class="input-group-addon">
+                    <div class="col-md-6 col-md-offset-2">
+                        <h4>Select date range</h4>
+                        <div class="input-group col-md-6">
+                            <div class="input-group-addon" data-toggle="tooltip" title="Click on the date">
                                 <i class="fa fa-calendar"></i>
                             </div>
                             <input type="text" class="form-control pull-right" id="dates">
@@ -112,15 +115,17 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h4>Exam days time range
+
                             <small>Exam can be scheduled during this interval</small>
                         </h4>
-                        <input id="duration_range" type="text" name="duration_range" value="">
+                        <input class="col-md-8" id="duration_range" type="text" name="duration_range" value="">
                         <hr>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h4>Exam duration
+
                             <small class="text-red">Default to 2h</small>
                         </h4>
                         <input id="exam_duration" type="text" name="exam_duration" value="">
@@ -129,7 +134,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h4>Break duration</h4>
+                        <h4>Break between exams duration</h4>
                         <input id="break_duration" type="text" name="break_duration" value="">
                     </div>
                     <hr>
@@ -140,9 +145,11 @@
                         @click="previousStep">
                     Previous
 
+
                 </button>
                 <button :class="{disabled: step == 5}" class="btn btn-success btn-flat pull-right"
                         @click="nextStep">Next
+
 
                 </button>
             </div>
@@ -168,9 +175,11 @@
                         @click="previousStep">
                     Previous
 
+
                 </button>
                 <button class="btn btn-success btn-flat pull-right"
                         @click="saveAll">Save
+
 
                 </button>
             </div>
@@ -181,6 +190,7 @@
 <script>
 
     import Locations from '../entities/Locations'
+    import swal from 'sweetalert2'
 
     export default{
         name: 'registrar-edit-rules',
@@ -194,9 +204,7 @@
                 });
 
                 $('#dates').daterangepicker({
-                    "dateLimit": {
-                        "days": 2
-                    }
+                    multidate: true
                 });
 
                 $("#duration_range").ionRangeSlider({
@@ -207,7 +215,7 @@
                     grid: true,
                     grid_num: 6,
                     type: 'double',
-                    step: 1800,
+                    step: 300,
                     prettify: function (num) {
                         var m = moment(num, 'X').locale("en");
                         return m.format("HH:mm A");
@@ -215,20 +223,23 @@
                 });
                 $("#exam_duration").ionRangeSlider({
                     values: [
-                        "50 minutes", "1 hour 20 minutes",
-                        "1 hour 40 minutes", "2 hours", "2 hours 15 minutes",
-                        "2 hours 45 minutes", "3 hours"
+                        "50 minutes", "1 hour", "1 hour 10 minutes", "1 hour 20 minutes", "1 hour 30 minutes",
+                        "1 hour 40 minutes", "1 hour 50 minutes", "2 hours", "2 hours 10 minutes",
+                        "2 hours 20 minutes", "2 hours 30 minutes", "2 hours 40 minutes", "2 hours 50 minutes",
+                        "3 hours"
                     ],
                     grid: true,
-                    from: 3
+                    grid_snap: true,
+                    from: 7
                 });
 
                 $("#break_duration").ionRangeSlider({
-                    from: 20,
+                    from: 10,
                     min: 10,
                     max: 60,
                     grid: true,
-                    step: 10,
+                    grid_snap: true,
+                    step: 5,
                     postfix: ' minutes'
                 });
             });
@@ -273,8 +284,13 @@
             },
 
             saveBuildings(){
-                if (this.buildings_info.length == 0) {
-                    toastr.error('No building selected.', 'Error!');
+                if (this.buildings_info.length === 0) {
+                    swal({
+                        title: 'Error',
+                        text: 'No buildings selected.',
+                        type: 'error',
+                        confirmButtonText: 'Ok',
+                    });
                 } else {
                     this.nextStep()
                 }
@@ -282,7 +298,12 @@
 
 
             saveAll(){
-                toastr.success('Settings saved successfully!', 'Success!');
+                swal({
+                    title: 'Success',
+                    text: 'Settings have been saved.',
+                    type: 'success',
+                    confirmButtonText: 'Ok',
+                });
             }
         }
     }

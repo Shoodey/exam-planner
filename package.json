@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "moment": "^2.18.1",
+    "sweetalert2": "^6.6.2",
     "vue-events": "^3.0.1",
     "zepto": "^1.2.0"
   }

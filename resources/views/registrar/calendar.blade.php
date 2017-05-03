@@ -40,33 +40,32 @@
                         </div>
                         <div class="box-body">
                             <div id="external-events">
-                                <p class="text-red">Click on an item to display information.</p>
                                 <p>
-                                    <span class="label label-default">Course</span>
+                                    <strong>Course: </strong>
                                     <span id="course"></span>
                                 </p>
                                 <p>
-                                    <span class="label label-default">Instructor</span>
+                                    <strong>Instructor: </strong>
                                     <span id="instructor"></span>
                                 </p>
                                 <p>
-                                    <span class="label label-default">Proctors</span>
+                                    <strong>Proctors: </strong>
                                     <span id="proctor"></span>
                                 </p>
                                 <p>
-                                    <span class="label label-default">Date</span>
+                                    <strong>Date: </strong>
                                     <span id="date"></span>
                                 </p>
                                 <p>
-                                    <span class="label label-default">Time</span>
+                                    <strong>Time: </strong>
                                     <span id="time"></span>
                                 </p>
                                 <p>
-                                    <span class="label label-default">Nb. of Students</span>
+                                    <strong>Nb. of Students: </strong>
                                     <span id="students"></span>
                                 </p>
                                 <p>
-                                    <span class="label label-default">Location</span>
+                                    <strong>Location: </strong>
                                     <span id="location"></span>
                                 </p>
                             </div>
@@ -86,13 +85,13 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-body">
-                            <table id="example2" class="table table-bordered table-hover">
+                            <h4>Wednesday 3, May</h4>
+                            <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Course</th>
                                         <th>Instructor</th>
                                         <th>Proctors</th>
-                                        <th>Date</th>
                                         <th>Start time</th>
                                         <th>End time</th>
                                         <th>Number of Students</th>
@@ -106,7 +105,6 @@
                                         <td>Dr. Mourhir
                                         </td>
                                         <td>John</td>
-                                        <td>07-June-2017</td>
                                         <td>10:00AM</td>
                                         <td>11:50AM</td>
                                         <td>30</td>
@@ -118,7 +116,6 @@
                                         <td>Dr. Cavalli
                                         </td>
                                         <td>Jane</td>
-                                        <td>07-June-2017</td>
                                         <td>10:00AM</td>
                                         <td>11:50AM</td>
                                         <td>30</td>
@@ -130,7 +127,6 @@
                                         <td>Dr. Fallah
                                         </td>
                                         <td>Johnny</td>
-                                        <td>07-June-2017</td>
                                         <td>10:00AM</td>
                                         <td>11:50AM</td>
                                         <td>30</td>
@@ -142,7 +138,130 @@
                                         <td>Dr. Fallah
                                         </td>
                                         <td>Janet</td>
-                                        <td>07-June-2017</td>
+                                        <td>10:00AM</td>
+                                        <td>11:50AM</td>
+                                        <td>30</td>
+                                        <td>8B</td>
+                                        <td>008</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h4>Wednesday 4, May</h4>
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Course</th>
+                                        <th>Instructor</th>
+                                        <th>Proctors</th>
+                                        <th>Start time</th>
+                                        <th>End time</th>
+                                        <th>Number of Students</th>
+                                        <th>Building</th>
+                                        <th>Room</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CSC 2303</td>
+                                        <td>Dr. Mourhir
+                                        </td>
+                                        <td>John</td>
+                                        <td>10:00AM</td>
+                                        <td>11:50AM</td>
+                                        <td>30</td>
+                                        <td>8B</td>
+                                        <td>008</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CSC1401</td>
+                                        <td>Dr. Cavalli
+                                        </td>
+                                        <td>Jane</td>
+                                        <td>10:00AM</td>
+                                        <td>11:50AM</td>
+                                        <td>30</td>
+                                        <td>8B</td>
+                                        <td>008</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CSC2302</td>
+                                        <td>Dr. Fallah
+                                        </td>
+                                        <td>Johnny</td>
+                                        <td>10:00AM</td>
+                                        <td>11:50AM</td>
+                                        <td>30</td>
+                                        <td>8B</td>
+                                        <td>008</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CSC3309</td>
+                                        <td>Dr. Fallah
+                                        </td>
+                                        <td>Janet</td>
+                                        <td>10:00AM</td>
+                                        <td>11:50AM</td>
+                                        <td>30</td>
+                                        <td>8B</td>
+                                        <td>008</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h4>Wednesday 5, May</h4>
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Course</th>
+                                        <th>Instructor</th>
+                                        <th>Proctors</th>
+                                        <th>Start time</th>
+                                        <th>End time</th>
+                                        <th>Number of Students</th>
+                                        <th>Building</th>
+                                        <th>Room</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CSC 2303</td>
+                                        <td>Dr. Mourhir
+                                        </td>
+                                        <td>John</td>
+                                        <td>10:00AM</td>
+                                        <td>11:50AM</td>
+                                        <td>30</td>
+                                        <td>8B</td>
+                                        <td>008</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CSC1401</td>
+                                        <td>Dr. Cavalli
+                                        </td>
+                                        <td>Jane</td>
+                                        <td>10:00AM</td>
+                                        <td>11:50AM</td>
+                                        <td>30</td>
+                                        <td>8B</td>
+                                        <td>008</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CSC2302</td>
+                                        <td>Dr. Fallah
+                                        </td>
+                                        <td>Johnny</td>
+                                        <td>10:00AM</td>
+                                        <td>11:50AM</td>
+                                        <td>30</td>
+                                        <td>8B</td>
+                                        <td>008</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CSC3309</td>
+                                        <td>Dr. Fallah
+                                        </td>
+                                        <td>Janet</td>
                                         <td>10:00AM</td>
                                         <td>11:50AM</td>
                                         <td>30</td>
@@ -152,8 +271,17 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="box-footer">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-block btn-flat btn-success"><i class="fa fa-file-pdf-o"></i> Print to PDF</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-block btn-flat btn-success"><i class="fa fa-envelope-o"></i> Send by Email</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.content-wrapper -->
                 </div>
 
 
@@ -436,16 +564,23 @@
                 m = date.getMonth(),
                 y = date.getFullYear();
             $('#calendar').fullCalendar({
-                eventStartEditable : false,
+//                eventStartEditable: false,
                 // event click on an exam to display more information about it
-                eventClick: function (calEvent, jsEvent, view) {
-                    $("#course").text(" " + calEvent.title);
-                    $("#instructor").text(" " + calEvent.instructor);
-                    $("#proctor").text(" " + calEvent.proctor);
-                    $("#date").text(" " + calEvent.date);
-                    $("#time").text(" " + calEvent.timeStart + " to " + calEvent.timeEnd);
-                    $("#students").text(" " + calEvent.numberOfStudents);
-                    $("#location").text(" " + calEvent.building + " " + calEvent.room);
+                eventClick: function (item, jsEvent, view) {
+                    $("#calendar-info-panel").css("display", "block");
+                    $("#info_tooltip").hide();
+
+                    $("#course").text(item.title);
+                    $("#instructor").text(item.instructor);
+                    $("#proctor").text(item.proctor);
+                    $("#date").text(item.start.format('dddd D, MMMM'));
+                    $("#time").text(item.start.format('hh:mm') + " to " + item.end.format('hh:mm'));
+                    $("#students").text(item.numberOfStudents);
+                    $("#location").text("Building " + item.building + " Room " + item.room);
+                },
+
+                eventDragStart: function (event, jsEvent, ui, view) {
+                    $("#drag_tooltip").hide();
                 },
                 //delete the ability to resize the duration of an event (always 1h50)
                 eventDurationEditable: false,
@@ -492,17 +627,67 @@
                 //Random default events
                 events: [
                     {
+                        title: 'Artificial Intelligence - CSC3309 - Section 1 - Section 2 - Section 3',
+                        instructor: "Dr. Cavalli",
+                        proctor: "Janet",
+                        date: "07-June-2017",
+                        numberOfStudents: "24",
+                        building: "1",
+                        room: "013",
+                        start: new Date(2017, 4, 3, 8, 0),
+                        end: new Date(2017, 4, 3, 11, 0),
+                        backgroundColor: "#3c8dbc",
+                        borderColor: "#3c8dbc"
+                    },
+                    {
+                        title: 'Introduction to Advanced Data Structure - CSC2302 - Section 1',
+                        instructor: "Dr. Fallah",
+                        proctor: "Jane",
+                        date: "07-June-2017",
+                        numberOfStudents: "38",
+                        building: "2",
+                        room: "012",
+                        start: new Date(2017, 4, 3, 8, 0), //months are zero based!!
+                        end: new Date(2017, 4, 3, 9, 50),
+                        backgroundColor: "#605ca8", //light-blue
+                        borderColor: "#605ca8" //light-blue
+                    },
+                    {
                         title: 'Introduction to Computer Programming - CSC1401 - Section 1',
                         instructor: "Dr. Cavalli",
                         proctor: "John",
                         date: "07-June-2017",
-                        timeStart: "10:00AM",
-                        timeEnd: "11:50AM",
-                        numberOfStudents: "30",
-                        building: "8B",
+                        numberOfStudents: "56",
+                        building: "3",
+                        room: "011",
+                        start: new Date(2017, 4, 3, 12, 0), //months are zero based!!
+                        end: new Date(2017, 4, 3, 13, 50),
+                        backgroundColor: "#605ca8", //light-blue
+                        borderColor: "#605ca8" //light-blue
+                    },
+                    {
+                        title: 'Object Oriented Programming in Java - CSC2303 - Section 1',
+                        instructor: "Dr. Mourhir",
+                        proctor: "Johnny",
+                        date: "07-June-2017",
+                        numberOfStudents: "76",
+                        building: "4",
+                        room: "010",
+                        start: new Date(2017, 4, 3, 15, 00), //months are zero based!!
+                        end: new Date(2017, 4, 3, 16, 50),
+                        backgroundColor: "#3c8dbc", //light-blue
+                        borderColor: "#3c8dbc" //light-blue
+                    },
+                    {
+                        title: 'Artificial Intelligence - CSC3309 - Section 1 - Section 2 - Section 3',
+                        instructor: "Dr. Cavalli",
+                        proctor: "Janet",
+                        date: "07-June-2017",
+                        numberOfStudents: "51",
+                        building: "5",
                         room: "008",
-                        start: new Date(2017, 4, 4, 10, 00), //months are zero based!!
-                        end: new Date(2017, 4, 4, 11, 50),
+                        start: new Date(2017, 4, 4, 14, 0), //months are zero based!!
+                        end: new Date(2017, 4, 4, 15, 50),
                         backgroundColor: "#3c8dbc", //light-blue
                         borderColor: "#3c8dbc" //light-blue
                     },
@@ -511,46 +696,93 @@
                         instructor: "Dr. Fallah",
                         proctor: "Jane",
                         date: "07-June-2017",
-                        timeStart: "10:00AM",
-                        timeEnd: "11:50AM",
-                        numberOfStudents: "30",
-                        building: "8B",
-                        room: "008",
+                        numberOfStudents: "34",
+                        building: "6",
+                        room: "007",
+                        start: new Date(2017, 4, 4, 17, 0), //months are zero based!!
+                        end: new Date(2017, 4, 4, 19, 0),
+                        backgroundColor: "#605ca8", //light-blue
+                        borderColor: "#605ca8" //light-blue
+                    },
+                    {
+                        title: 'Introduction to Computer Programming - CSC1401 - Section 1',
+                        instructor: "Dr. Cavalli",
+                        proctor: "John",
+                        date: "07-June-2017",
+                        numberOfStudents: "67",
+                        building: "7",
+                        room: "006",
                         start: new Date(2017, 4, 4, 10, 00), //months are zero based!!
                         end: new Date(2017, 4, 4, 11, 50),
-                        backgroundColor: "#008C00", //light-blue
-                        borderColor: "#008C00" //light-blue
+                        backgroundColor: "#3c8dbc", //light-blue
+                        borderColor: "#3c8dbc" //light-blue
                     },
                     {
                         title: 'Object Oriented Programming in Java - CSC2303 - Section 1',
                         instructor: "Dr. Mourhir",
                         proctor: "Johnny",
                         date: "07-June-2017",
-                        timeStart: "10:00AM",
-                        timeEnd: "11:50AM",
-                        numberOfStudents: "30",
-                        building: "8B",
-                        room: "008",
+                        numberOfStudents: "57",
+                        building: "8",
+                        room: "005",
                         start: new Date(2017, 4, 4, 10, 00), //months are zero based!!
                         end: new Date(2017, 4, 4, 11, 50),
-                        backgroundColor: "#008C00", //light-blue
-                        borderColor: "#008C00" //light-blue
+                        backgroundColor: "#605ca8", //light-blue
+                        borderColor: "#605ca8" //light-blue
                     },
                     {
                         title: 'Artificial Intelligence - CSC3309 - Section 1 - Section 2 - Section 3',
                         instructor: "Dr. Cavalli",
                         proctor: "Janet",
                         date: "07-June-2017",
-                        timeStart: "10:00AM",
-                        timeEnd: "11:50AM",
-                        numberOfStudents: "30",
-                        building: "8B",
-                        room: "008",
-                        start: new Date(2017, 4, 4, 10, 00), //months are zero based!!
-                        end: new Date(2017, 4, 4, 11, 50),
+                        numberOfStudents: "81",
+                        building: "7",
+                        room: "004",
+                        start: new Date(2017, 4, 5, 8, 0),
+                        end: new Date(2017, 4, 5, 11, 0),
+                        backgroundColor: "#3c8dbc",
+                        borderColor: "#3c8dbc"
+                    },
+                    {
+                        title: 'Introduction to Advanced Data Structure - CSC2302 - Section 1',
+                        instructor: "Dr. Fallah",
+                        proctor: "Jane",
+                        date: "07-June-2017",
+                        numberOfStudents: "14",
+                        building: "6",
+                        room: "003",
+                        start: new Date(2017, 4, 5, 8, 0), //months are zero based!!
+                        end: new Date(2017, 4, 5, 9, 50),
+                        backgroundColor: "#605ca8", //light-blue
+                        borderColor: "#605ca8" //light-blue
+                    },
+                    {
+                        title: 'Introduction to Computer Programming - CSC1401 - Section 1',
+                        instructor: "Dr. Cavalli",
+                        proctor: "John",
+                        date: "07-June-2017",
+                        numberOfStudents: "7",
+                        building: "5",
+                        room: "002",
+                        start: new Date(2017, 4, 5, 12, 0), //months are zero based!!
+                        end: new Date(2017, 4, 5, 13, 50),
+                        backgroundColor: "#605ca8", //light-blue
+                        borderColor: "#605ca8" //light-blue
+                    },
+                    {
+                        title: 'Object Oriented Programming in Java - CSC2303 - Section 1',
+                        instructor: "Dr. Mourhir",
+                        proctor: "Johnny",
+                        date: "07-June-2017",
+                        numberOfStudents: "89",
+                        building: "4",
+                        room: "001",
+                        start: new Date(2017, 4, 5, 15, 00), //months are zero based!!
+                        end: new Date(2017, 4, 5, 16, 50),
                         backgroundColor: "#3c8dbc", //light-blue
                         borderColor: "#3c8dbc" //light-blue
-                    }
+                    },
+
                 ],
                 editable: false,
                 droppable: false, // this allows things to be dropped onto the calendar !!!

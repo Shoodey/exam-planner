@@ -78,7 +78,7 @@
 
                 <li class="{{ $menu == 'registrar.tentatives' ? 'active' : '' }}">
                     <a href="{{ route('registrar.tentatives') }}">
-                        <i class='fa fa-th-list'></i> <span>Schedule tentatives</span>
+                        <i class='fa fa-th-list'></i> <span>Schedule attempts</span>
                     </a>
                 </li>
 
